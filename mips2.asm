@@ -1,8 +1,7 @@
 .data	
 
 n: .word 6
-nl: .asciiz  " x "
-result: .asciiz " = " "\nResultado: "
+result: .asciiz " x "" = " "\nResultado: "
 .text
 
 inicio:
@@ -21,7 +20,7 @@ loop:
 	sub $t0, $t0, 1
 	blez $t0,fim
 	li $v0,4       
-	la $t2, nl	
+	la $t2, result	
 	add $a0, $zero, $t2     
 	syscall	
 	b loop
@@ -30,15 +29,15 @@ loop:
 fim: 
 	li $v0,4       
 	la $t2, result	
-	add $a0, $zero, $t2     
+	add $a0, $t2, 4     
 	syscall	
 	li  $v0,1     
 	add $a0, $zero, $t1        
 	move $a0, $t1  
 	syscall	
-	li $v0,4       
+	li $v0,4     
 	la $t2, result
-	add $t2, $t2, 4	
+	add $t2, $t2, 8
 	add $a0, $zero, $t2     
 	syscall	
 	li  $v0,1     
